@@ -8,6 +8,7 @@ categories:
 tags: 
 - hbase
 - 采坑集
+description: 当前我们的数据是时间序列数据。由OpenTsdb写入。OpenTsdb在HBase中设计的RowKey格式：metric_time_tagk1_tagv1…tagkn_tagvn这种时间序列的数据，存在一个很严重的问题：数据热点。
 ---
 
 ## 现状

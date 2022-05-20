@@ -8,6 +8,7 @@ categories:
 tags: 
 - hbase
 - 性能调优
+description: 长时间gc，在部分节点，每个小时，都有一个长时间gc的尖峰。关于G1 GC，对HBase进行进一步改进。对于HBase，我们当前的配置：
 ---
 
 ### 长时间GC

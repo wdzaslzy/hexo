@@ -8,6 +8,7 @@ categories:
 tags: 
 - hadoop
 - yarn
+description: yarn的核心思想是将集群资源进行管理。例如：任务的调度与监控。为达到该目的，yarn提供了两个组件：ResourceManager 和 NodeManager。其中，ResourceManager用来管理集群资源，NodeManager是每台机器的框架代理
 ---
 
 # **简介**
