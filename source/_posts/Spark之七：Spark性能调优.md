@@ -1,5 +1,5 @@
 ---
-如何选择一种最合适的持久化策略title: 'Spark之七:Spark基础性能调优'
+title: 'Spark之七:Spark基础性能调优'
 date: 2021-01-08 15:03:08
 tags: [spark, bigdata]
 categories: Spark
