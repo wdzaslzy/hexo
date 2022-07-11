@@ -73,7 +73,7 @@ spark支持的data source有很多种类型，比如：json、csv、parquet、or
 
 这个json文件是park案例下的一个json文件，大家可以在example/resource下找到。
 
-![](../images/spark之二/1653903901.jpg)
+![](../../images/spark之二/1653903901.jpg)
 
  
 
@@ -204,7 +204,7 @@ dataFrame.selectExpr("my_udf(age)").show()
 
 自定义udaf，需要继承UserDefinedAggregateFunction。我们自定义一个我们的求平均值的函数。
 
-![](../images/spark之二/1653903963.jpg)
+![](../../images/spark之二/1653903963.jpg)
 
 使用该自定义函数，像注册udf函数一样，将它注册进去即可使用。
 
@@ -214,7 +214,7 @@ dataFrame.selectExpr("my_udf(age)").show()
 
 spark不仅仅提供了链式sql编程外，还提供了入门门槛更低的纯sql写法。如下：
 
-![](../images/spark之二/1653904065.jpg)
+![](../../images/spark之二/1653904065.jpg)
 
 我们从一个文件中读出一个dataFrame后，我们可以将它注册为一个表视图。可以通过sql来操作该表视图。是不是更简单更方便。
 

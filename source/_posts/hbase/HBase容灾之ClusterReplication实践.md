@@ -25,13 +25,13 @@ description:本篇是基于ClusterReplication的理论基础，进行实践。�
 
 用该建表语句，在备集群建立一张一模一样的表。
 
-![](../images/hbase/20220617111453.png)
+![](../../images/hbase/20220617111453.png)
 
 
 
 将主集群中待复制的表列簇的REPLICATION_SCOPE设置为1。默认为0。
 
-![](../images/hbase/20220617112513.jpg)
+![](../../images/hbase/20220617112513.jpg)
 
 修改命令：`help 'alter'`查看使用帮助。
 
@@ -39,7 +39,7 @@ description:本篇是基于ClusterReplication的理论基础，进行实践。�
 hbase> alter 'tsdb-pre-release', NAME => 't', REPLICATION_SCOPE => 1
 ```
 
-![](../images/hbase/20220617134134.png)
+![](../../images/hbase/20220617134134.png)
 
 
 
@@ -55,7 +55,7 @@ hbase> add_peer '1', CLUSTER_KEY=> "10.0.0.97,10.0.0.98,10.0.0.99:2181:/tsdb-pre
 
 2. 添加复制关系后，可以用list_peers查看
 
-![](../images/hbase/20220617134539.jpg)
+![](../../images/hbase/20220617134539.jpg)
 
 
 

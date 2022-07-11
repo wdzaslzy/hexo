@@ -39,7 +39,7 @@ HBase中Replication和WAL Compression一起使用，会存在兼容性问题。�
 
 4 当每个RegionServer创建完成之后，Master返回创建结果给客户端。
 
-![](../images/1653393088.jpg)
+![](../../images/1653393088.jpg)
 
 
 
@@ -47,7 +47,7 @@ HBase中Replication和WAL Compression一起使用，会存在兼容性问题。�
 
 创建完Peer之后，真正负责数据同步的是RegionServer的ReplicationSource线程。数据推送流程如下：
 
-![](../images/20220524195507.png)
+![](../../images/20220524195507.png)
 
 
 
@@ -153,11 +153,11 @@ hbase> add_peer '11', ENDPOINT_CLASSNAME => 'org.apache.hadoop.hbase.MyReplicati
 
 正常情况下，异步复制的方式，是通过WAL的创建时间来顺序读取，然后将数据复制到备集群。但是，当主集群发生region-move，如果存在未推送完成的hlog，hbase会将该hlog文件移动到其它RS上，新的RS会新起一个Replication线程进行复制。由于hlog是追加的，因此，此时会有两个RS并行向备集群复制数据，很容易造成数据不一致。
 
-![](../images/1653632864.jpg)
+![](../../images/1653632864.jpg)
 
 这种并行操作，会导致：**主集群与备集群的数据不一致**
 
-![](../images/Dingtalk_20220527150319.jpg)
+![](../../images/Dingtalk_20220527150319.jpg)
 
 用户的写入顺序为：t1，t2，t5。用户在写到t5时，还没有进行集群复制（因为是异步的，所以有延迟）。
 
@@ -185,7 +185,7 @@ RS1--> t2
 
 hbase的同步策略如下图：
 
-![](../images/微信截图_20220527153819.png)
+![](../../images/微信截图_20220527153819.png)
 
 几个概念：
 
@@ -205,7 +205,7 @@ hbase的同步策略如下图：
 
 除此之外，主集群和备集群之间还会开启异步复制链路，若主集群上的某个HLog通过异步复制完全推送到备份集群，那么这个HLog在备集群上对应的RemoteWAL则被清理，否则不可清理。
 
-![](../images/hbase/20220608180802.jpg)
+![](../../images/hbase/20220608180802.jpg)
 
 因此，主集群的每一次写入，备份集群斗殴不会丢失这次写入的数据，一旦主集群发生故障，只需要回放RemoteWAL日志到备集群，备集群马上就可以为线上提供服务。
 

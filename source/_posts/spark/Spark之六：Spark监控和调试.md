@@ -12,7 +12,7 @@ description: 这是一个重点知识，如果你已经有了一定的基础知�
 
 在大部分时间里，都需要监控spark应用的执行过程以排查出现的问题。下面是spark任务运行的一个图，从图中入手，可以得出一些监控方式。
 
-![](../images/spark/1654586009855.jpg)
+![](../../images/spark/1654586009855.jpg)
 
 #### Spark Applications and Jobs
 
@@ -52,7 +52,7 @@ spark中的executor process都运行在单个jvm中，因此，在了解了整�
 
 Spark UI是最直观的监控方式，也是最常用的。下面是spark ui提供的几个选项页面。
 
-![](../images/spark/1654586062252.jpg)
+![](../../images/spark/1654586062252.jpg)
 
 - Jobs
 
@@ -90,7 +90,7 @@ sparkSession.read.option("header", "true")
 
 这个代码使用了SQL查询，我们可以到SQL页下来查看它的具体运行信息，如下图：
 
-![](../images/spark/1654586096502.jpg)
+![](../../images/spark/1654586096502.jpg)
 
 第一个看到的是一个整体信息：
 
@@ -108,7 +108,7 @@ Succeeded Jobs: 2
 
 #### 读csv文件并重分区
 
-![](../images/spark/1654586130652.jpg)
+![](../../images/spark/1654586130652.jpg)
 
 上边WholeStateCodegen的蓝色框表示对csv文件的一个完整扫描，扫描结果得出以下信息：
 
@@ -126,7 +126,7 @@ Succeeded Jobs: 2
 
 #### 取数据并进行聚合
 
-![](../images/spark/1654586165213.jpg)
+![](../../images/spark/1654586165213.jpg)
 
 这个阶段对应的代码是：
 
@@ -145,7 +145,7 @@ Succeeded Jobs: 2
 
 #### 最后阶段：统计阶段
 
-![](../images/spark/1654586194902.jpg)
+![](../../images/spark/1654586194902.jpg)
 
 最后这个阶段，是.count()函数的执行阶段。因为我们对is_glass做了分组，所以，这个count是统计每组的一个count。从DAG可以看到，最后输出3行，即表示有三种类型的is_glass。
 
@@ -155,7 +155,7 @@ Succeeded Jobs: 2
 
 了解了该程序的执行过程，我们再来一起看下整个应用的整体过程。
 
-![](../images/spark/1654586226081.jpg)
+![](../../images/spark/1654586226081.jpg)
 
 我们从Jobs选项可以看到，一共有3个stage，与我们从DAG中看到的一致。每个stage的持续时间、提交时间，每个job一共运行多少个task等等。每个阶段的task是不同的，第一个阶段read csv使用了8个分区，该方式和spark读任务有很大的关系，它会将一个文件根据行数和spark运行环境进行均分，让每个partition可以均匀的来读取，最终的计算结果是8，第二个stage，因为我们强制设置了分区数量，因此它具有2个分区，第三个阶段一共有200的task，因为默认的shuffer分区是200。
 
@@ -163,7 +163,7 @@ Succeeded Jobs: 2
 
 #### spark stages
 
-![](../images/spark/1654586259417.jpg)
+![](../../images/spark/1654586259417.jpg)
 
 单击第一个stage，可以看到该stage的详细执行信息。顶部的Summary Metrics是整个stage的一个汇总，在看该图时，一般都看这部分值的分布情况。例如Duration，如果min和max差距很大，说明有一部分分区出现了数据倾斜的情况。此图中分布是比较均匀的。在该图的最下边Tasks中，是每个task的一个执行信息，如果数据出现了倾斜，可以从task中看到是哪部分数据。
 

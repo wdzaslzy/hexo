@@ -94,7 +94,7 @@ spark-shell默认已经给我们创建了SparkContext对象，变量名是sc。�
 
 sparkContext提供了一个方法：`parallelize`，该方法可以将Driver已有的集合转换为分布式集合（RDD）。
 
-![](../images/spark之一/1653901535.jpg)
+![](../../images/spark之一/1653901535.jpg)
 
 可以看到，变量res1是定义在Driver的一个Array数组，它是实际存储在Driver中。res2是我们从res1转换而来的，它的类型是一个RDD。它被分发到集群中的每个节点上，也就是每个节点保存着一部分元素，所有节点合并后就是Driver端的一个Array集合。
 
@@ -106,7 +106,7 @@ sparkContext提供了一个方法：`parallelize`，该方法可以将Driver已�
 
 sparkContext提供了另外一个方法：`textFile`，该方法可以从文件系统中读取文件中的内容。
 
-![](../images/spark之一/1653901746.jpg)
+![](../../images/spark之一/1653901746.jpg)
 
 如果是本地文件，则使用：file://，如果是HDFS，则使用：hdfs://
 
@@ -156,7 +156,7 @@ def main(args: Array[String]): Unit = {
 
 我们描述一下整个流程：
 
-![](../images/spark之一/1653901808.jpg)
+![](../../images/spark之一/1653901808.jpg)
 
 从这个流程图我们可以清晰的看到，在transformation算子中，只定义而不实际执行，一旦遇到action算子，则立即执行。前面的这个定义过程，在spark中被称作：构建DAG(有向无环图)。
 
@@ -213,7 +213,7 @@ val lineWordCnts: RDD[Int] = lines.map(myFunction)
 
 举个例子：
 
-![](../images/spark之一/1653901863.jpg)
+![](../../images/spark之一/1653901863.jpg)
 
 这个程序可能会达不到预期想要的效果。spark任务的执行，是将相同的执行操作分发到多个节点一起执行，所以它在执行前，需要先计算出哪部分需要进行分发，需要分发的这部分（方法、变量），也就是它们的闭包范围。
 
@@ -285,7 +285,7 @@ action：
 
 为了说明shuffer背后的动作，我们以groupByKey为例来说明。
 
-![](../images/spark之一/1653901995.jpg)
+![](../../images/spark之一/1653901995.jpg)
 
 面这张图就是groupByKey的数据实际shuffer的过程。一开始有3个分区，通过key聚合后，相同的key被放在同一个分区中，最终变为两个分区（shuffer后的分区个数可以人为的指定）。
 我们可以看到，每个分区中的数据都可能会被移动到其他分区。shuffer动作其实就是数据重新分配的一个过程。

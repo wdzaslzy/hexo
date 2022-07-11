@@ -13,8 +13,6 @@ description: 当我们分析了问题，并改进了新的rowkey结构，那么�
 
 接上篇。
 
-<!--more-->
-
 当我们分析了问题，并改进了新的rowkey结构，那么我们为了做到无缝对接，需要将历史数据进行迁移。
 
 迁移历史数据的思路大体为：
@@ -39,7 +37,7 @@ HBase提供了bulkload方法。
 
 bulkload的基本原理是：通过MapReduce、Spark或Flink等离线计算框架，批量读取HFile，然后根据自己的业务逻辑，对数据进行进一步操作（更新），之后再生成一个HFile文件。生成HFile以后，通过LoadIncrementalHFiles将其load到新表。
 
-![1.png](../images/1-b7ae521d598e4e91a5e3e42b22c3c922.png)
+![1.png](../../images/1-b7ae521d598e4e91a5e3e42b22c3c922.png)
 
 
 
@@ -61,7 +59,7 @@ Flink读取HBase，提供了AbstractTableInputFormat，该InputFormat对外开�
 
 在Flink的源码中，提供了hbase1.4版本和2.2版本的支持。但是，在maven仓库中心，却是1.4。
 
-![2.jpg](../images/2-9b41b25d7d9748fe91f18bcdf308800e.jpg)
+![2.jpg](../../images/2-9b41b25d7d9748fe91f18bcdf308800e.jpg)
 
 #### 解决方案
 
@@ -141,7 +139,7 @@ public void writeRecord(Tuple2<org.apache.hadoop.hbase.io.ImmutableBytesWritable
 
 将native文件拿下来，加入我们的依赖工程，在打包时，将native文件放在容器的：/lib64目录。
 
-![3.jpg](../images/3-2f96ae7e92ee411cbd1b860d0d96071b.jpg)
+![3.jpg](../../images/3-2f96ae7e92ee411cbd1b860d0d96071b.jpg)
 
 Java服务启动时，会自动load lib64目录，将它加载到jvm中。
 

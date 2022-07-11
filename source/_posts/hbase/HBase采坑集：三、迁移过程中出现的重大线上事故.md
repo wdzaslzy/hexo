@@ -13,8 +13,6 @@ description: 上一篇记录了在进行bulkload编码时遇到的坑，这一�
 
 上一篇记录了在进行bulkload编码时遇到的坑，这一篇记录一下，实际执行过程中遇到的坑。
 
-<!--more-->
-
 ## 采坑集
 
 ### 采坑1——单次load太多hfile后，hmaster飘红

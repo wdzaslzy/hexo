@@ -21,9 +21,9 @@ top: 10
 
 这就导致，我们的RegionServer的Region虽然分配很均匀，但是写入差距却很大。
 
-![](../images/Dingtalk_20220530150011.jpg)
+![](../../images/Dingtalk_20220530150011.jpg)
 
-![](../images/Dingtalk_20220530150107.jpg)
+![](../../images/Dingtalk_20220530150107.jpg)
 
 
 
@@ -83,8 +83,6 @@ public class BalancerChore extends ScheduledChore {
 
 
 
-
-
 ### 执行过程
 
 触发balance后，实际执行入口是HMaster的balance方法。有无参和是否强制执行。默认不强制执行。强制执行是说，当前如果存在RIT(正在发生split)时，也能继续执行。
@@ -105,7 +103,7 @@ protected void initializeZKBasedSystemTrackers()
 
 这里面的balancer是：LoadBalancer 类型。目前，HBase提供了4种balance方式。依赖关系如下：
 
-![](../images/hbase/balance类图.jpg)
+![](../../images/hbase/balance类图.jpg)
 
 - RSGroupBasedLoadBalancer
 
@@ -528,7 +526,7 @@ protected boolean needsBalance(Cluster cluster) {
 
 **几个重要的CostFunction**
 
-![](../images/hbase/a3d7392a4e96ced252a0f425ed1ebb4a40e519ad.png)
+![](../../images/hbase/a3d7392a4e96ced252a0f425ed1ebb4a40e519ad.png)
 
 CostFunction是一个判断代价的函数，取值范围是0到1，值越小，说明越平衡。
 
@@ -541,7 +539,7 @@ CostFunction是一个判断代价的函数，取值范围是0到1，值越小，
 
 
 
-![balancer_](../images/hbase/07d2b94044f25913dd473ed0abdc49f9fda67da0.png)
+![balancer_](../../images/hbase/07d2b94044f25913dd473ed0abdc49f9fda67da0.png)
 
 CandidateGenerator生成action的次数有一定限制，称为maxStep，该值与集群配置以及集群规模相关。
 
@@ -654,7 +652,7 @@ hbase.master.balancer.stochastic.regionCountCost。regionCountCost权重，默�
 
 用线下环境做测试：
 
-![](../images/hbase/lQLPJxZc3z7s6bHM2c0CGLBFpW5qBdzkrQKZOlXxANYA_536_217.png)
+![](../../images/hbase/lQLPJxZc3z7s6bHM2c0CGLBFpW5qBdzkrQKZOlXxANYA_536_217.png)
 
 total：2790  count：3  mean：930
 
@@ -668,7 +666,7 @@ min = 1
 
 重启停掉的Region后：
 
-![](../images/hbase/1654081128(1).jpg)
+![](../../images/hbase/1654081128(1).jpg)
 
 
 
@@ -823,7 +821,7 @@ public class ClusterStatusChore extends ScheduledChore {
 
 #### 生成执行计划
 
-![](../images/hbase/a30b0ece6a41efbfece74466cc2e48cefdfc9bf3.png)
+![](../../images/hbase/a30b0ece6a41efbfece74466cc2e48cefdfc9bf3.png)
 
 所谓的执行计划，就是一些action集合。action的类型有：AssignRegionAction、MoveRegionAction和SwapRegionsAction三种。
 
@@ -838,7 +836,7 @@ Cluster.Action nextAction(Cluster cluster) {
 
 其中，CandidateGenerator目前主要是以下几种：
 
-![](../images/hbase/CandidateGenerator.png)
+![](../../images/hbase/CandidateGenerator.png)
 
 而在StochasticLoadBalancer中，使用了以下四种：
 
@@ -1007,21 +1005,21 @@ hbase> create 'balance_test', 't', SPLITS_FILE=>'/home/lizy/split'
 
 第三步：更改hbase配置后重启
 
-![](../images/hbase/20220606145148.jpg)
+![](../../images/hbase/20220606145148.jpg)
 
-![](../images/hbase/20220606145303.jpg)
+![](../../images/hbase/20220606145303.jpg)
 
 第四步：找出某个RS下的所有Region进行写操作
 
 以bigdata-master-99为例：
 
-![](../images/hbase/20220606145715.jpg)
+![](../../images/hbase/20220606145715.jpg)
 
 第五步：写一段时间后，查看Balance日志及balance结果
 
-![](../images/hbase/20220606165150.jpg)
+![](../../images/hbase/20220606165150.jpg)
 
-![](../images/hbase/1654505979702.jpg)
+![](../../images/hbase/1654505979702.jpg)
 
 通过日志分析：执行了3次balance后，写平衡后，再没执行过balance。
 
@@ -1029,7 +1027,7 @@ hbase> create 'balance_test', 't', SPLITS_FILE=>'/home/lizy/split'
 
 在步骤五的基础上，再增加一个写操作。只不过该写操作是按Region写的。每个Region写30s，换下一个Region。30个Region持续写15分钟，看整体效果。
 
-![](../images/hbase/20220607105453.jpg) ![](../images/hbase/20220607105608.jpg)
+![](../../images/hbase/20220607105453.jpg) ![](../../images/hbase/20220607105608.jpg)
 
 
 
@@ -1039,15 +1037,15 @@ hbase> create 'balance_test', 't', SPLITS_FILE=>'/home/lizy/split'
 
 第七步：将balance时间间隔设置为1小时，balance时用到的numRegionLoadsToRemember由15调整到60。目的：补数据、rollup等操作在短时间内是不平衡的，但是在小时级别下，基本是均匀的。除非补历史大范围全量数据（一个任务跑几天的）。
 
-![](../images/hbase/20220607110901.jpg)
+![](../../images/hbase/20220607110901.jpg)
 
 第八步：重启HBase，重复以上操作
 
-![](../images/hbase/20220607121036.jpg)
+![](../../images/hbase/20220607121036.jpg)
 
 搜索Balance日志，并没看到执行了balance。
 
-![](../images/hbase/20220607121226.jpg)
+![](../../images/hbase/20220607121226.jpg)
 
 
 
