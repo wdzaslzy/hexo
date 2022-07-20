@@ -6,6 +6,7 @@ url: /archives/cluster_replication
 categories: [HBase调优]
 tags: [hbase,性能调优]
 description: HBase提供了一种集群复制机制。它通过传播WAL文件来保证多集群之间状态互相同步。一般情况下，这种ClusterReplication机制用于：
+top: 9
 ---
 
 HBase提供了一种集群复制机制。它通过传播WAL文件来保证多集群之间状态互相同步。

@@ -2,7 +2,7 @@
 title: 'Redis中BigKey对读写性能的影响'
 date: 2022-06-09 10:30:00
 tags: [redis]
-categories: Redos
+categories: 随便一记
 description: 由于某些业务场景，Redis中的单个Key下的Value是一个很大的值，这些bigkey对我们的查询会有多大影响呢？
 ---
 
@@ -266,5 +266,4 @@ curl --location --request POST 'http://localhost:8005/benchmark/read' \
 **结论**
 
 在redis中，hash结构下的bigkey，对于写操作，无影响。对于查询来说，查询的结果越大，响应时间越长。针对我们的业务场景下的查询，基本不受影响。
-
 
