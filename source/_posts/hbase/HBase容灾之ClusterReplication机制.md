@@ -97,7 +97,7 @@ SERIAL：串行标记，用来标识复制到备集群是否用串行方式复�
 例如：
 
 ```shell
-hbase> add_peer '1', CLUSTER_KEY=> "zk1,zk2,zk3:2181:/hbase-backup", STATE=> "DISABLED", NAMESPACES => ["ns1", "ns2"], TABLE_CFS => { "ns3:table1" => [], "ns3:table2" => ["cf1"] }, SERIAL=> true
+hbase> add_peer '1', CLUSTER_KEY=> "zk1,zk2,zk3:2181:/hbas", STATE=> "DISABLED", NAMESPACES => ["ns1", "ns2"], TABLE_CFS => { "ns3:table1" => [], "ns3:table2" => ["cf1"] }, SERIAL=> true
 ```
 
 
@@ -149,6 +149,8 @@ hbase> add_peer '11', ENDPOINT_CLASSNAME => 'org.apache.hadoop.hbase.MyReplicati
 ### 串行复制
 
 串行复制的目的是按数据到达的顺序从源集群复制到目标集群。
+
+**（PS：该feature只在hbase社区版本，目前HBase最新版本2.4.13是无该功能的。该feature由小米提供）**
 
 #### 为什么需要串行复制
 
@@ -219,13 +221,13 @@ hbase的同步策略如下图：
 在主集群上添加peer：
 
 ```shell
-hbase> add_peer '1', CLUSTER_KEY => 'zk1,zk2,zk3:2181:/test-backup', REMOTE_WAL_DIR=>'hdfs://namespace/hbase/test-backup/remoteWALs',TABLE_CFS=>{"test"=>[]}
+hbase> add_peer '1', CLUSTER_KEY => 'zk1,zk2,zk3:2181:/hbase', REMOTE_WAL_DIR=>'hdfs://namespace/hbase/test-backup/remoteWALs',TABLE_CFS=>{"test"=>[]}
 ```
 
 在备集群上添加peer：
 
 ```shell
-hbase> add_peer '1', CLUSTER_KEY=>'zk1,zk2,zk3:2181:/test',REMOTE_WAL_DIR=>'hdfs://namespace/hbase/hbase/remoteWALs',NAMESPACES=>{"test"=>[]}
+hbase> add_peer '1', CLUSTER_KEY=>'zk1,zk2,zk3:2181:/hbase',REMOTE_WAL_DIR=>'hdfs://namespace/hbase/test/remoteWALs',NAMESPACES=>{"test"=>[]}
 ```
 
 同步复制需要在主机群和备集群具有相同的peerId，peer只支持table之间的同步。
@@ -278,5 +280,44 @@ hbase> hbase> transit_peer_sync_replication_state '1', 'ACTIVE'
 
 
 
+## 几个疑问
+
+#### 疑问一：HBase如何解决循环复制的问题？
+
+所谓循环复制，也就是A集群建立了一个复制到B集群的Peer，B集群建立了一个复制到C集群的Peer，C集群建立了一个复制到A集群的Peer，如何保证向A写入数据时不会出现 A -> B -> C -> A -> B -> C -> A 这样毫无意义的循环复制？
+
+HBase的操作请求在写到hlog时，会记录一个uuid，当该uuid与本集群一致时，才会进行复制。非本集群的uuid，会被过滤。那么，在该复制链路中，A复制到B上的数据，不会复制到C上。也就不会形成循环复制。
 
 
+
+#### 疑问二：ZK中存了哪些信息
+
+创建replication后，会在zk上生成一个node。
+
+![](../../images/hbase/20220725143831.png)
+
+peers记录了在该HBase中所创建的所有peer。每个peer里面记录了peer的配置信息。从哪里复制到哪里，表的信息以及复制状态。
+
+rs里面记录了每个RegionServer当前对于每个peer的复制进度。
+
+
+
+#### 疑问三：RegionServer挂掉后，HBase如何来处理挂掉的RS产生的复制队列？
+
+某个RS宕机后，其它RS会去接管之前RS上hlog。能确保只有一个RS处理。因为zk上记录了每个peer的消费进度，因此，即使某个RS宕机后被新的RS接管后，依然能从宕机时的位置开始复制。
+
+
+
+#### 疑问四： 为什么ReplicationSource线程不直接调用batch接口把数据写入到备集群？
+
+
+
+#### 疑问五：主集群200个节点，而备集群只有20个节点，备集群如何才能承受住大量写入呢？
+
+HBase提供了一种HFileReplicator机制，即通过bulkload的方式，将某个hfile写到备集群。可以保证备集群能够承受得住大量的写入。但是，通过HFileReplicator方式，会有一定的延迟。
+
+
+
+参考资料：
+
+[cluster replication 源码分析](https://blog.csdn.net/liubenlong007/article/details/102824649)

@@ -50,6 +50,16 @@ rest组件的核心代码是WebMonitorEndpoint类，相关类图如下：
 
 ![](../../images/flink/20220719173110.png)
 
+从该类图看到，WebMonitorEndpoint继承自RestServerEndpoint，实现了JsonArchivist和LeaderContender接口。其中，RestServerEndpoint是基于Netty实现的抽象类。JsonArchivist接口定义了基于ExecutionGraph生成JSON的接口。LeaderContender接口定义了Leader选举方面的处理。
+
+
+
+WebMonitorEndpoint还有两个子类：MiniDispatcherRestEndpoint和DispatcherRestEndpoint。MiniDispatcherRestEndpoint是基于pre-job模式的实现。DispatcherRestEndpoint是基于session模式的实现。
+
+
+
+当运行一个flink job时，
+
 #### RestServerEndpoint
 
 
