@@ -321,3 +321,5 @@ HBase提供了一种HFileReplicator机制，即通过bulkload的方式，将某�
 参考资料：
 
 [cluster replication 源码分析](https://blog.csdn.net/liubenlong007/article/details/102824649)
+
+[Replication源码](https://github.com/yilong2001/yl-hbase-rep/blob/master/replication%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)

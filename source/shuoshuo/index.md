@@ -9,7 +9,7 @@ title: 说说
 new Artitalk({
     appId: 'hf4R7YTiI1qqsHIDT2OmRwlf-MdYXbMMI', // Your LeanCloud appId
     appKey: '1UiGy0Aol7aljoylECjGBaJn', // Your LeanCloud appKey
-	serverURL: 'https://hf4r7yti.api.lncldglobal.com',
+	serverURL: 'https://api.wdzaslzy.top',
 	pageSize: 50,
 	img: 'https://wdzaslzy.github.io/images/head.jpg',
 	atComment: 0
