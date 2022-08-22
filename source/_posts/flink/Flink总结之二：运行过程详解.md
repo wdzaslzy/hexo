@@ -4,7 +4,7 @@ date: 2022-07-15 16:22:35
 tags: [flink]
 categories: Flink总结
 description: Flink运行过程是Flink引擎的核心部分，支撑着Flink流作业和批作业的运行，同时保障作业的高可用和可扩展性等。Flink运行时采用Master-Worker的架构，其中Flink的Master节点为JobManager，Worker节点为TaskManager。
-top: 6
+top: 7
 ---
 
 Flink运行过程是Flink引擎的核心部分，支撑着Flink流作业和批作业的运行，同时保障作业的高可用和可扩展性等。**Flink运行时采用Master-Worker的架构，其中Flink的Master节点为JobManager，Worker节点为TaskManager**。

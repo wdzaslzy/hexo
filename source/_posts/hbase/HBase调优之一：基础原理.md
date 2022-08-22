@@ -6,6 +6,7 @@ url: /archives/jichuyuanli
 categories: [HBase调优]
 tags: [hbase,性能调优]
 description: HBase是一个数据库，它具有关系型数据库所具有的：表、行、列。从逻辑视图来看，它是以关系型数据库中的“表”形式组织的。从物理视图看，它是一个Map，由键值构成。
+top: 9
 ---
 
 ## HBase概述

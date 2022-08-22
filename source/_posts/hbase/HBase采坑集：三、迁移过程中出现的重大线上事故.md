@@ -9,6 +9,7 @@ tags:
 - hbase
 - 采坑集
 description: 上一篇记录了在进行bulkload编码时遇到的坑，这一篇记录一下，实际执行过程中遇到的坑。采坑集 采坑1——单次load太多hfile后，hmaster飘红 现象 单次load了太多的hfile，每个region接近100个hfile
+top: 9
 ---
 
 上一篇记录了在进行bulkload编码时遇到的坑，这一篇记录一下，实际执行过程中遇到的坑。
