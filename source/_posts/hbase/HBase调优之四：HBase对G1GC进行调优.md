@@ -9,7 +9,6 @@ tags:
 - hbase
 - 性能调优
 description: HBase is the big data store of choice for engineering at HubSpot. It’s a complicated data store with a multitude of levers and knobs that can be adjusted to tune performance. 
-top: 9
 ---
 
 # Tuning G1GC For Your HBase Cluster

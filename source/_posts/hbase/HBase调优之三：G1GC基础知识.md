@@ -9,7 +9,6 @@ tags:
 - hbase
 - 性能调优
 description: HubSpot engineering is a invested heavily in microservices and continuous deployment. Java is not only used to run our thousands of deployables, but also our queues
-top: 9
 ---
 
 ## G1基础
