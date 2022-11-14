@@ -6,7 +6,6 @@ url: /archives/region_balance
 categories: [HBase调优]
 tags: [hbase,性能调优]
 description: 在HBase中，我们存储的数据是时序数据。时序数据的特点是，只关心实时数据，历史数据一般不关心。因此，我们在设计RowKey时，充分根据时间特性来进行设置：bucket_time_xxx。
-top: 9
 ---
 
 ## 背景

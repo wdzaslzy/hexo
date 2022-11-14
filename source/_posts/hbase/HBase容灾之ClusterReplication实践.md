@@ -4,7 +4,6 @@ date: 2022-06-17 10:44:34
 categories: [HBase调优]
 tags: [hbase,性能调优]
 description: 本篇是基于ClusterReplication的理论基础，进行实践。理论基础请参考前文：
-top: 9
 ---
 
 本篇是基于ClusterReplication的理论基础，进行实践。理论基础请参考前文：[HBase容灾之ClusterReplication机制](https://wdzaslzy.github.io/2022/06/15/hbase/HBase%E5%AE%B9%E7%81%BE%E4%B9%8BClusterReplication%E6%9C%BA%E5%88%B6/)
