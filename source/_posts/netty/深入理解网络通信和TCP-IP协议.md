@@ -43,13 +43,13 @@ description: 随着计算机技术发展，计算机的体积和价格都在下�
 
 OSI采用了分层的结构化技术，共分七层，**物理层、数据链路层、网络层、传输层、会话层、表示层、应用层**。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEB790B77E0B9F44C190122B400AFFC256/9953)
+​    ![0](../../images/netty/1668416020165.jpg)
 
 #### **TCP/IP模型**
 
 OSI模型比较复杂且学术化，所以我们实际使用的TCP/IP模型，分5层，物理层、数据链路层**（**也有TCP/IP模型将物理层、数据链路层合称为**网络接口层**，与之对应的，协议就被称为TCP/IP四层协议模型**）、网络层、传输层、应用层**。两个模型之间的对应关系如图所示：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICED2F6E3E96B59477780B59EBF60DBF078/9954)
+​    ![0](../../images/netty/1668416054209.jpg)
 
 无论什么模型，每一个抽象层建立在低一层提供的服务上，并且为高一层提供服务。大致来说，可以这么理解（只是帮助我们理解，实际上肯定会有点出入），对于我们的PC机来说，物理层可以看成网卡，数据链路层可以看成网卡驱动程序，网络层和传输层由操作负责处理，应用层则是常用的一些网络应用程序和我们自己所编写的网络应用程序。
 
@@ -59,7 +59,7 @@ OSI模型比较复杂且学术化，所以我们实际使用的TCP/IP模型，�
 
 Transmission Control Protocol/Internet Protocol的简写，中译名为传输控制协议/因特网互联协议，是Internet最基本的协议、Internet国际互联网络的基础，由网络层的IP协议和传输层的TCP协议组成。协议采用了5层的层级结构。然而在很多情况下，它是利用 IP 进行通信时所必须用到的协议群的统称。也就是说，它其实是个协议家族，由很多个协议组成，并且是在不同的层， 是互联网的基础通信架构。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE749320D3987F42FEBCDC09D829F66B13/9955)
+​    ![0](../../images/netty/1668416076169.jpg)
 
 **IP、TCP和UDP**
 
@@ -97,7 +97,7 @@ UDP（User Datagram Protocol的简称， 中文名是用户数据报协议）有
 
 ⑧ 用户B 应用程序的处理 接收端应用程序会直接接收发送端发送的数据。通过解析数据，展示相应的内容。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE37262ABEC62F479F97478172B0DBAD59/9956)
+​    ![0](../../images/netty/1668416098188.jpg)
 
 
 
@@ -111,9 +111,9 @@ MAC地址全称叫做媒体访问控制地址，也称为局域网地址（LAN A
 
 MAC地址共48位（6个字节）。前24位由IEEE（电气和电子工程师协会）决定如何分配，后24位由实际生产该网络设备的厂商自行制定。例如：FF:FF:FF:FF:FF:FF或FF-FF-FF-FF-FF-FF
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICED332931D3B9E4658A3E1EC890511AC80/9957)
+​    ![0](../../images/netty/1668416125365.jpg)
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEDC278E111C8242E29680B7E8A2239373/9959)
+​    ![0](../../images/netty/1668416144365.jpg)
 
 **IP地址**
 
@@ -139,7 +139,7 @@ IP地址分为：IPv4和IPv6。我们这里着重讲的是IPv4地址，IP地址�
 
 一台计算机上同时可以运行多个程序。传输层协议正是利用这些端口号识别本机中正在进行通信的应用程序，并准确地将数据传输。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEBA58981E86964DF28B48DB7B61607ECC/9960)
+​    ![0](../../images/netty/1668416168635.jpg)
 
 **面试题：为什么端口号有65535个？**
 
@@ -157,7 +157,7 @@ Windows下使用netstat -ano 查看所有端口号，netstat -ano|findstr “<�
 
 Linux下可以用root 用户执行 lsof -i:端口号查看指定端口占用。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICED4F40696CC594D91885E6A199EB29D16/9961)
+​    ![0](../../images/netty/1668416190666.jpg)
 
 lsof -i -U：显示所有打开的UNIX domain和端口文件
 
@@ -179,11 +179,11 @@ netstat -tunlp | grep 端口号
 
 -p 显示建立相关链接的程序名
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE92C002DF458B4D89826859CBAC3E8B6C/9962)
+​    ![0](../../images/netty/1668416211108.jpg)
 
 #### **综述**
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE3C473FAFDF5C419586C055BFAEEA6FDB/9963)
+​    ![0](../../images/netty/1668416228747.jpg)
 
 所以一般来说，不管计算机中有多少网卡，每个网卡都会有自己的MAC 地址，这个MAC 地址是不会变化的。而每个网卡在正常工作的情况下，都会有一个IP地址，这个IP地址完全是可以变化的。而这台计算机中承载的各种应用程序可以拥有自己的端口号，然后通过服务器的网卡，正确地进行网络通信。
 
@@ -191,7 +191,7 @@ netstat -tunlp | grep 端口号
 
 总的来说，操作系统是通过源IP地址、目标IP地址、协议号（协议类型）、源端口号以及目标端口号这五个元素唯一性的识别一个网络上的通信。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEFFAD4D86619B4906A0AC2F2C9D6B8926/9964)
+​    ![0](../../images/netty/1668416250214.jpg)
 
 **面试题：一台主机上只能保持最多 65535 个 TCP 连接，对吗？**
 
@@ -257,11 +257,11 @@ TCP 提供面向有连接的通信传输。面向有连接是指在数据通信�
 
 简易速记版
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE60B515504BA94B7F8C6717F4E92AEF88/9965)
+​    ![0](../../images/netty/1668416273617.jpg)
 
 但是简易速记版，在真实的面试中不能让面试官满意，很多公司还会考察握手过程中的具体详情：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE8393A02F95E94C1FAD5592D44FBB0368/9966)
+​    ![0](../../images/netty/1668416297330.jpg)
 
 第一次握手：客户端将请求报文标志位SYN置为1，请求报文的Sequence Number字段（简称seq）中填入一个随机值J，并将该数据包发送给服务器端，客户端进入SYN_SENT状态，等待服务器端确认。
 
@@ -305,11 +305,11 @@ TCP是可靠的传输控制协议，而三次握手是保证数据可靠传输�
 
 四次挥手即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。在socket编程中，这一过程由客户端或服务端任一方执行close来触发。过程简易记忆版：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE69B716A9A6F5471A9B8CBD1FCF23D5F5/9967)
+​    ![0](../../images/netty/1668416317710.jpg)
 
 由于TCP连接是全双工的，因此，每个方向都必须要单独进行关闭。首先进行关闭的一方将执行主动关闭，而另一方则执行被动关闭。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEAF93C1EF461E4B29A78409B37FD14512/9968)
+​    ![0](../../images/netty/1668416338425.jpg)
 
 由上图可见，TCP建立一个连接需3个分节，终止一个连接则需4个分节。
 
@@ -367,9 +367,7 @@ d、系统性能不佳，抓包看下接口响应时长，是不是后台出现�
 
 **下载与安装**
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICED7D1FCF28061473C82293A0098FBF02C/9969)
-
-在https://www.wireshark.org/的官方主页点击
+ 在https://www.wireshark.org/的官方主页点击
 
 进入下载页面，选择适合自己的版本下载即可
 
@@ -383,55 +381,55 @@ d、系统性能不佳，抓包看下接口响应时长，是不是后台出现�
 
 host 47.112.44.148
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE6311011CB9F64161B36CAC921D930C6B/9970)
+​    ![0](../../images/netty/1668416400781.jpg)
 
 开始捕获，连接数据库：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEF687FFE43B194EC6B41DEB433C5177DB/9971)
+​    ![0](../../images/netty/1668416442848.jpg)
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE3DAC5620135B4E1D89DB14B0C31F3D03/9972)
+​    ![0](../../images/netty/1668416460676.jpg)
 
 很明显，WireShark捕获到了本机所有和 47.112.44.148通信的报文，现在我们只需要观察TCP的三次握手和四次分手的报文，所以，我们在显示过滤器中写上tcp and !mysql
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEE1C3693FC12448A6B279EEFD45709643/9973)
+​    ![0](../../images/netty/1668416483684.jpg)
 
 按照tcp三次握手的规则，三次握手包含一个SYN 包、 一个SYN/ACK 包和 一个ACK包。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEE10C9E9EFF3C4DB8812F508C6F6EDE2A/9974)
+​    ![0](../../images/netty/1668416503967.jpg)
 
 就是窗口里最上面的三条记录：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE4B40118753EF4657A34A758B41D7B5F1/9975)
+​    ![0](../../images/netty/1668416524474.jpg)
 
 我们一条条看过来，
 
 **第一次握手**
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE67958395406A4560942AE916B4887C84/9976)
+​    ![0](../../images/netty/1668416541716.jpg)
 
 从这里我们可以看出，这是数据链路层相关的信息，source部分的地址和我们机器上的mac地址一模一样
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEE5166A82413D45B8AACF60EE65FAEE24/9977)
+​    ![0](../../images/netty/1668416563613.jpg)
 
 接下来，就是IP层的相关信息，其中表明了它的上一层协议是TCP，同时本地和远程服务器的IP地址：
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICE466FADCD1F754328B14D58C148C987A5/9978)
+​    ![0](../../images/netty/1668416582348.jpg)
 
 接下来，就是TCP层的相关信息，其中包括了本地端口和远程服务端口，既然是syn包，里面当然会带上seq值，本次通信是1979849485，tcp报文格式中的syn字段被设置为1，用来表明这是一个syn包。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICECFEAEB3CECE0456EB479249714D2A208/9979)
+​    ![0](../../images/netty/1668416604992.jpg)
 
 **第二次握手**
 
 数据链路层和IP层的报文我们不再查阅，直接看TCP层的报文，很明显，这是服务器给客户端的ACK报文，其中依然包括了远程服务端口和本地端口，同时服务器要把自己端的seq值告诉客户端，我们看到实际值是3366556883。同时服务器要把客户端传给自己的seq值做个应答确认，所以我们看见Acknowledgment number 字段值是 1979849486，刚好是第一次握手中，客户端传递给服务端的seq值1979849485加1。同时tcp报文格式中的syn字段被设置为1，Acknowledgment字段被设置为1，用来表明这是一个syn/ack包。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICEAF5A11DDD4DD49F18E99912216FADE4E/9980)
+​    ![0](../../images/netty/1668416626224.jpg)
 
 **第三次握手**
 
 这次握手的的报文分析，通过前两次的分析，相信同学们能够自行分析出来，这里就不在赘述。
 
-​    ![0](https://note.youdao.com/yws/public/resource/7d82cceeb1c16a97418e2021bea050dd/xmlnote/OFFICED974E32D5A504338A2619B841C01E2D0/9981)
+​    ![0](../../images/netty/1668416651999.jpg)
 
 ### **UDP和UDT、QUIC**
 
